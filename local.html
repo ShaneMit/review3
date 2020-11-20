@@ -6,10 +6,12 @@
   <title>Document</title>
 </head>
 <body>
+
+  <h1 id="greeting"></h1>
   
   <script>
 
-    localStorage.setItem('name', 'John Doe')
+    document.getElementById('greeting').textContent = `Hello my name is ${localStorage.getItem('name')}`
 
   </script>
 </body>
