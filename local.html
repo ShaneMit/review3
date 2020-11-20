@@ -13,6 +13,7 @@
     <input type="text" name="name" id="name">
     <button id="submit">Submit</button>
   </form>
+  <button id="removeItem">Remove local storage item</button>
   
   <script>
 
@@ -21,6 +22,10 @@
       localStorage.setItem('name', document.getElementById('name').value)
       document.getElementById('greeting').textContent = `Hello my name is ${document.getElementById('name').value}`
       document.getElementById('name').value = ''
+    })
+
+    document.getElementById('removeItem').addEventListener('click', () => {
+      localStorage.removeItem('name')
     })
 
     if (localStorage.getItem('name')) {
