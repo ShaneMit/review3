@@ -79,11 +79,21 @@
 
     $(document).ready(function () {
 
+      let first = ''
+      let second = ''
+      let op = ''
+      let isOp = false
+
       $('.number').on('click', function () {
-        console.log(this.value)
+        if (isOp) {
+          second += $(this).val()
+        } else {
+          first += $(this).val()
+        }
       })
-      $('.operator').on('click', () => {
-        console.log('operator')
+      $('.operator').on('click', function () {
+        op = $(this).val()
+        isOp = true
       })
       $('.equal').on('click', () => {
         console.log('equal')
