@@ -83,23 +83,55 @@
       let second = ''
       let op = ''
       let isOp = false
+      let result = ''
 
       $('.number').on('click', function () {
         if (isOp) {
           second += $(this).val()
+          $('#second-number').text(second)
         } else {
           first += $(this).val()
+          $('#first-number').text(first)
         }
       })
       $('.operator').on('click', function () {
+        
         op = $(this).val()
         isOp = true
+        $('#operator').text($(this).children('span').text())
       })
       $('.equal').on('click', () => {
-        console.log('equal')
+        first = parseInt(first)
+        second = parseInt(second)
+        switch (op) {
+          case 'plus':
+          result = first + second
+          break
+          case 'minus':
+          result = first - second
+          break
+          case 'times':
+          result = first * second
+          break
+          case 'divide':
+          result = first / second
+          break
+          case 'power':
+          result = first ** second
+          break
+        }
+        $('#result').text(result)
       })
       $('.clear').on('click', () => {
-        console.log('clear')
+        $('#first-number').text('')
+        $('#second-number').text('')
+        $('#operator').text('')
+        $('#result').text('')
+        first = ''
+        second = ''
+        op = ''
+        isOp = ''
+        result = ''
       })
 
     });
