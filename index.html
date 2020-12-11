@@ -79,8 +79,18 @@
 
     $(document).ready(function () {
 
-      // Your code here...
-
+      $('.number').on('click', function () {
+        console.log(this.value)
+      })
+      $('.operator').on('click', () => {
+        console.log('operator')
+      })
+      $('.equal').on('click', () => {
+        console.log('equal')
+      })
+      $('.clear').on('click', () => {
+        console.log('clear')
+      })
 
     });
 
