@@ -26,17 +26,16 @@
 
     document.getElementById('searchPokemon').addEventListener('click', event => {
       event.preventDefault()
-      
-    })
+      console.log(document.getElementById('name').value)
 
-    fetch('https://pokeapi.co/api/v2/pokemon/ditto/')
-      .then(r => r.json())
-      .then(pokemon => {
-        console.log(pokemon)
-        let pokeElem = document.createElement('div')
-        pokeElem.classname = 'card'
-        pokeElem.style = 'width: 18rem;'
-        pokeElem.innerHTML = `
+      fetch(`https://pokeapi.co/api/v2/pokemon/${document.getElementById('name').value}/`)
+        .then(r => r.json())
+        .then(pokemon => {
+          console.log(pokemon)
+          let pokeElem = document.createElement('div')
+          pokeElem.classname = 'card'
+          pokeElem.style = 'width: 18rem;'
+          pokeElem.innerHTML = `
           <img 
             src="${pokemon.sprites.front_default}"
             class="card-img-top" 
@@ -67,9 +66,12 @@
             </ul>
           </div>
         `
-        document.getElementById('pokemon').append(pokeElem)
-      })
-      .catch(e => console.log(e))
+          document.getElementById('pokemon').append(pokeElem)
+        })
+        .catch(e => console.log(e))
+    })
+
+    
 
   </script>
 </html>
