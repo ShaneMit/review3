@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+<body>
+  <form>
+    <div class="form-group">
+      <label for="name">Pokemon Name</label>
+      <input type="text" class="form-control" id="name">
+    </div>
+    <button id="searchPokemon" type="submit" class="btn btn-primary">Search Pokemon</button>
+  </form>
+  <div id="pokemon"></div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+  <script>
+
+    document.getElementById('searchPokemon').addEventListener('click', event => {
+      event.preventDefault()
+      
+    })
+
+    fetch('https://pokeapi.co/api/v2/pokemon/ditto/')
+      .then(r => r.json())
+      .then(pokemon => {
+        console.log(pokemon)
+        let pokeElem = document.createElement('div')
+        pokeElem.classname = 'card'
+        pokeElem.style = 'width: 18rem;'
+        pokeElem.innerHTML = `
+          <img 
+            src="${pokemon.sprites.front_default}"
+            class="card-img-top" 
+            alt="${pokemon.name}">
+          <div class="card-body">
+            <h5 class="card-title">
+            ${pokemon.name}
+            </h5>  
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                ${pokemon.stats[0].stat.name}: ${pokemon.stats[0].base_stat}  
+              </li>
+              <li class="list-group-item">
+                ${pokemon.stats[1].stat.name}: ${pokemon.stats[1].base_stat}  
+              </li>
+              <li class="list-group-item">
+                ${pokemon.stats[2].stat.name}: ${pokemon.stats[2].base_stat}
+              </li>
+              <li class="list-group-item">
+                ${pokemon.stats[3].stat.name}: ${pokemon.stats[3].base_stat}
+              </li>
+              <li class="list-group-item">
+                ${pokemon.stats[4].stat.name}: ${pokemon.stats[4].base_stat}  
+              </li>
+              <li class="list-group-item">
+                ${pokemon.stats[5].stat.name}: ${pokemon.stats[5].base_stat}  
+              </li>
+            </ul>
+          </div>
+        `
+        document.getElementById('pokemon').append(pokeElem)
+      })
+      .catch(e => console.log(e))
+
+  </script>
+</html>
