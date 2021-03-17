@@ -41,6 +41,19 @@
     $.get(`http://www.omdbapi.com/?apikey=217617c1&t=${$('#title').val()}`)
       .then(movie => {
         console.log(movie)
+        let movieElem = document.createElement('div')
+        movieElem.className = 'card'
+        movieElem.style = 'width: 18 rem;'
+        movieElem.innerHTML = `
+          <img src="${movie.Poster}" class="card-img-top" alt="${movie.Title}">
+          <div class="card-body">
+           <h5 class="card-title">${movie.Title}</h5>
+           <p class="card-text">${movie.Plot}</p>
+          </div>
+           `
+           $('#title').val('')
+           $('#movie').html('')
+           document.getElementById('movie').append(movieElem)
       })
       .catch(e => console.log(e))
   })
