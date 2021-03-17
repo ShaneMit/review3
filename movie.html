@@ -27,11 +27,22 @@
   crossorigin="anonymous"></script>
 <script>
 
+//   <div class="card" style="width: 18rem;">
+//       <img src="..." class="card-img-top" alt="...">
+//         <div class="card-body">
+//           <h5 class="card-title">Card title</h5>
+//           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+//           <a href="#" class="btn btn-primary">Go somewhere</a>
+//         </div>
+// </div>
+
   $('#searchMovie').on('click', event => {
     event.preventDefault()
-    $.get('')
-      .then()
-      .catch()
+    $.get(`http://www.omdbapi.com/?apikey=217617c1&t=${$('#title').val()}`)
+      .then(movie => {
+        console.log(movie)
+      })
+      .catch(e => console.log(e))
   })
 
 </script>
